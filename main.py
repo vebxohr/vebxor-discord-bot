@@ -1,15 +1,18 @@
 import os
 import random
-
+from imdb import IMDb
 from dotenv import load_dotenv
 from discord.ext import commands
-
+from PIL import Image
+import urllib.request
+import discord.file
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
 bot = commands.Bot(command_prefix='-')
+ia = IMDb()
 
 
 @bot.event
@@ -27,7 +30,6 @@ async def on_member_join(member):
 
 @bot.command(name='99')
 async def nine_nine(ctx):
-
     brooklyn_99_quotes = [
         'I\'m the human form of the 💯 emoji.',
         'Bingpot!',
@@ -42,11 +44,59 @@ async def nine_nine(ctx):
 
 
 @bot.command(name='roll', help='Simulates rolling dice.')
-async def roll(ctx, number_of_sides: int = 6,  number_of_dice: int = 1):
-    dice = [
-        str(random.choice(range(1, number_of_sides + 1)))
-        for _ in range(number_of_dice)
-    ]
-    await ctx.send(', '.join(dice))
+async def roll(ctx, number_of_sides: int = 6, number_of_dice: int = 1):
+    if number_of_sides > 100 or number_of_sides < 1 or number_of_dice > 10 or number_of_dice < 0:
+        message = "Invalid number"
+
+    else:
+        dice = [
+            str(random.choice(range(1, number_of_sides + 1)))
+            for _ in range(number_of_dice)]
+        message = ', '.join(dice)
+    await ctx.send(message)
+
+
+@bot.command(name="imdbs")
+async def search_movie(ctx, *movie):
+    movie = " ".join(movie)
+    movies = ia.search_movie(movie)
+    print(movies)
+    top_result = ia.get_movie(movies[0].getID())
+    print(top_result.data)
+
+    title, genres, rating = get_title_rating_genre(top_result)
+
+    await ctx.send(f"Title: {title}\n"
+                   f"Rating: {rating}\n"
+                   f"Genre: {genres}\n"
+                   f"{ia.get_imdbURL(top_result)}"
+                   )
+
+
+def get_title_rating_genre(movie):
+    try:
+        title = movie['title']
+    except KeyError:
+        title = "*No title available*"
+
+    try:
+        genres = ", ".join(movie['genre'])
+    except KeyError:
+        genres = "*No genre available*"
+
+    try:
+        rating = movie['rating']
+    except KeyError:
+        rating = "*No rating available*"
+
+    return title, genres, rating
+
+
+def create_temp_cover_file(coverurl):
+    with urllib.request.urlopen(coverurl) as url:
+        with open('temp.jpg', 'wb') as f:
+            f.write(url.read())
+            f.close()
+
 
 bot.run(TOKEN)
