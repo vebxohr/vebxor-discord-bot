@@ -60,9 +60,7 @@ async def roll(ctx, number_of_sides: int = 6, number_of_dice: int = 1):
 async def search_movie(ctx, *movie):
     movie = " ".join(movie)
     movies = ia.search_movie(movie)
-    print(movies)
     top_result = ia.get_movie(movies[0].getID())
-    print(top_result.data)
 
     title, genres, rating = get_title_rating_genre(top_result)
 
