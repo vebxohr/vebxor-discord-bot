@@ -77,7 +77,7 @@ async def play_ugøy(ctx):
     # Gets voice channel of message author
     vc = await ctx.message.author.voice.channel.connect()
 
-    sleep(1)
+    sleep(0.8)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
 
