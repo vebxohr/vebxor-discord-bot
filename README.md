@@ -1,6 +1,6 @@
 # vebxor-discord-bot
 
-Simple discord bot used for some fun commands.
+Simple discord bot for some fun commands, made using discord.py
 
 ## Installation
 Install the required python packages:  
