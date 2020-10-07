@@ -2,15 +2,18 @@
 
 Simple discord bot for some fun commands, made using discord.py
 
-## Installation
-Install the required python packages:  
+## Setup/Installation
+- Create a bot at the [discord developer pages](https://discord.com/developers/applications) and add to your server.  
+  
+
+- Install the required python packages:  
 >`pip install -r requirements.txt`   
      
    
-Install FFmpeg for the host machine. For linux/debian:  
+- Install FFmpeg for the host machine. For linux/debian:  
 >`sudo apt install ffmpeg`
 
-Make a .env file with the token for your discord bot, called DISCORD_TOKEN, e.g:
+- Make a .env file with the token for your discord bot, called DISCORD_TOKEN, e.g:
 >`DISCORD_TOKEN=SECRETTOKEN123466134`
 ## Run
 run the main.py file on your host machine:
