@@ -84,6 +84,7 @@ async def play_ugøy(ctx):
     while vc.is_playing():
         sleep(1)
 
+    sleep(1)
     await vc.disconnect()
 
     await ctx.message.delete()
