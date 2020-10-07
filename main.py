@@ -6,6 +6,7 @@ from discord.ext import commands
 from PIL import Image
 import urllib.request
 import discord.file
+from time import sleep
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -69,6 +70,22 @@ async def search_movie(ctx, *movie):
                    f"Genre: {genres}\n"
                    f"{ia.get_imdbURL(top_result)}"
                    )
+
+
+@bot.command(name="ugøy")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    vc = await ctx.message.author.voice.channel.connect()
+
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
+
+    while vc.is_playing():
+        sleep(.1)
+
+    await vc.disconnect()
+
+    await ctx.message.delete()
 
 
 def get_title_rating_genre(movie):
