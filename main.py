@@ -77,9 +77,41 @@ async def play_ugøy(ctx):
     # Gets voice channel of message author
     vc = await ctx.message.author.voice.channel.connect()
 
-    sleep(0.8)
+    sleep(0.2)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
+
+    while vc.is_playing():
+        sleep(1)
+
+    sleep(1)
+    await vc.disconnect()
+
+    await ctx.message.delete()
+
+
+@bot.command(name="yomama")
+async def search_movie(ctx):
+    jokes = {}
+    with open('yomamajokes.txt') as f:
+        count = 0
+        for l in f:
+            jokes[count] = l
+            count += 1
+
+    number = random.choice(range(0, count))
+
+    await ctx.send(jokes.get(number))
+
+
+@bot.command(name="rage")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ragel.mp3'), after=lambda e: print('done', e))
 
     while vc.is_playing():
         sleep(1)
