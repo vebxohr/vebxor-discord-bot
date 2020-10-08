@@ -29,3 +29,9 @@ Search for a movie on IMDB with the name *moviename*, showing the rating, genres
 
 - **-ugøy**  
 The bot joins the user writing the command's voice channel and plays the *ugy_jon.mp3* file
+
+- **-rage**
+The bot joins the user writing the command's voice channel and plays the *ragel.mp3* file
+
+- **-yomama**
+The bot tells a random yo mama joke. 
