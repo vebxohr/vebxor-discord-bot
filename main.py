@@ -12,7 +12,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
-bot = commands.Bot(command_prefix='-')
+bot = commands.Bot(command_prefix='.')
 ia = IMDb()
 
 
@@ -72,6 +72,12 @@ async def search_movie(ctx, *movie):
                    )
 
 
+@bot.command(name="disconnectvc")
+async def leave_vc(ctx):
+    vc = get_voice_channel_bot(ctx)
+    if vc:
+        await vc.disconnect()
+
 @bot.command(name="ugøy")
 async def play_ugøy(ctx):
     # Gets voice channel of message author
@@ -98,6 +104,7 @@ async def play_ugøy(ctx):
 
     await ctx.message.delete()
 
+
 @bot.command(name="yomama")
 async def search_movie(ctx):
     jokes = {}
@@ -113,10 +120,7 @@ async def search_movie(ctx):
 
 
 def is_connected(ctx):
-    print(ctx.voice_client)
-    print(ctx.voice_client.is_connected)
-    status = ctx.voice_client and ctx.voice_client.is_connected
-    return status
+    return ctx.voice_client and ctx.voice_client.is_connected
 
 
 def get_voice_channel_author(ctx):
@@ -124,6 +128,12 @@ def get_voice_channel_author(ctx):
         return None
 
     return ctx.author.voice.channel
+
+
+def get_voice_channel_bot(ctx):
+    if ctx.voice_client and ctx.voice_client.is_connected:
+        return ctx.voice_client
+    return None
 
 
 @bot.command(name="rage")
