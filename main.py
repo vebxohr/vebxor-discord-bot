@@ -75,19 +75,29 @@ async def search_movie(ctx, *movie):
 @bot.command(name="ugøy")
 async def play_ugøy(ctx):
     # Gets voice channel of message author
-    vc = await ctx.message.author.voice.channel.connect()
+    # vc = await ctx.message.author.voice.channel.connect()
 
-    sleep(0.2)
-    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
-    vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
 
     while vc.is_playing():
         sleep(1)
 
-    sleep(1)
-    await vc.disconnect()
-
-    await ctx.message.delete()
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
 
 
 @bot.command(name="yomama")
@@ -103,20 +113,28 @@ async def search_movie(ctx):
 
     await ctx.send(jokes.get(number))
 
+
 def is_connected(ctx):
     print(ctx.voice_client)
     print(ctx.voice_client.is_connected)
     status = ctx.voice_client and ctx.voice_client.is_connected
     return status
 
-@bot.command(name="rage")
-async def play_ugøy(ctx):
-    # Gets voice channel of message author
 
+def get_voice_channel_author(ctx):
     if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return None
+
+    return ctx.author.voice.channel
+
+
+@bot.command(name="rage")
+async def play_rage(ctx):
+    # Gets voice channel of message author
+    voice_channel = get_voice_channel_author(ctx)
+    if not voice_channel:
         return
 
-    voice_channel = ctx.author.voice.channel
     if ctx.voice_client is None:
         vc = await voice_channel.connect()
     else:
