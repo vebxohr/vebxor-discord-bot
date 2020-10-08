@@ -103,23 +103,40 @@ async def search_movie(ctx):
 
     await ctx.send(jokes.get(number))
 
+def is_connected(ctx):
+    print(ctx.voice_client)
+    print(ctx.voice_client.is_connected)
+    status = ctx.voice_client and ctx.voice_client.is_connected
+    return status
 
 @bot.command(name="rage")
 async def play_ugøy(ctx):
     # Gets voice channel of message author
-    vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+    print(is_connected(ctx))
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
 
     sleep(0.2)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('ragel.mp3'), after=lambda e: print('done', e))
 
-    while vc.is_playing():
-        sleep(1)
+    #while vc.is_playing():
+    #    sleep(0.1)
 
-    sleep(1)
-    await vc.disconnect()
+    #sleep(1)
+    #await vc.disconnect()
 
-    await ctx.message.delete()
+    #await ctx.message.delete()
 
 
 def get_title_rating_genre(movie):
