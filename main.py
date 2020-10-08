@@ -104,7 +104,7 @@ async def play_ugøy(ctx):
 
     await ctx.message.delete()
 
-@bot.command(name="dildo")
+@bot.command(name="ai")
 async def play_ai(ctx):
     # Gets voice channel of message author
     # vc = await ctx.message.author.voice.channel.connect()
