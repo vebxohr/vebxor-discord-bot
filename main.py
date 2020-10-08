@@ -92,13 +92,11 @@ async def play_ugøy(ctx):
     if not is_connected(ctx):
         vc = await ctx.message.author.voice.channel.connect()
 
-    while vc.is_playing():
-        sleep(1)
-
     sleep(0.2)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
 
+    await ctx.message.delete()
 
 @bot.command(name="yomama")
 async def search_movie(ctx):
@@ -148,13 +146,7 @@ async def play_rage(ctx):
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('ragel.mp3'), after=lambda e: print('done', e))
 
-    #while vc.is_playing():
-    #    sleep(0.1)
-
-    #sleep(1)
-    #await vc.disconnect()
-
-    #await ctx.message.delete()
+    await ctx.message.delete()
 
 
 def get_title_rating_genre(movie):
