@@ -105,7 +105,33 @@ async def play_ugøy(ctx):
     await ctx.message.delete()
 
 @bot.command(name="dildo")
-async def play_same(ctx):
+async def play_ai(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ai.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="dildo")
+async def play_dildo(ctx):
     # Gets voice channel of message author
     # vc = await ctx.message.author.voice.channel.connect()
 
