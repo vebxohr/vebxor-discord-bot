@@ -152,7 +152,7 @@ async def play_ape(ctx):
 
     sleep(0.2)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
-    vc.play(discord.FFmpegPCMAudio('aape.mp3'), after=lambda e: print('done', e))
+    vc.play(discord.FFmpegPCMAudio('ape.mp3'), after=lambda e: print('done', e))
 
     await ctx.message.delete()
 
