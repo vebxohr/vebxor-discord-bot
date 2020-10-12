@@ -119,6 +119,7 @@ async def play_sound(ctx):
 
     await ctx.message.delete()
 
+
 @bot.command(name="hsounds")
 async def help_sounds(ctx):
     message = str("\n".join(get_aliases()))
@@ -144,10 +145,8 @@ async def search_movie(ctx):
 async def stop_sound(ctx):
     voice_channel = get_voice_channel_bot(ctx)
     if voice_channel:
-        try:
-            await voice_channel.stop()
-        except discord.ext.commands.errors.CommandInvokeError:
-            ctx.send("I'm not currently playing any sounds")
+        await voice_channel.stop()
+
 
 
 def is_connected(ctx):
@@ -192,6 +191,7 @@ def create_temp_cover_file(coverurl):
             f.write(url.read())
             f.close()
 
-print(get_aliases())
+
+
 bot.run(TOKEN)
 
