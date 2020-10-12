@@ -21,17 +21,17 @@ run the main.py file on your host machine:
 
 ## Commands
 
-- **-roll x y**  
+- **.roll x y**  
 Simulates rolling an x-sided dice y number of times. 
 
-- **-imdbs** *moviename*
+- **.imdbs** *moviename*
 Search for a movie on IMDB with the name *moviename*, showing the rating, genres, and an URL
 
 - *play_sound*  
   This command uses the file name (without extension (mp3)) as a command to play the mp3 file in the user's channel. E.g ape.mp3 is played with the following command.  
     
-  **-ape**
+  **.ape**
   The bot joins the user writing the command's voice channel and plays the *ugy_jon.mp3* file
 
-- **-yomama**
+- **.yomama**
 The bot tells a random yo mama joke. 
