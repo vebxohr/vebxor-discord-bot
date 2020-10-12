@@ -57,6 +57,9 @@ async def roll(ctx, number_of_sides: int = 6, number_of_dice: int = 1):
     await ctx.send(message)
 
 
+
+
+
 @bot.command(name="imdbs")
 async def search_movie(ctx, *movie):
     movie = " ".join(movie)
@@ -101,6 +104,139 @@ async def play_ugøy(ctx):
     sleep(0.2)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('ugy_jon.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="spela")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('spela.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="start")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('start.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="drid")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('drid.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+
+@bot.command(name="sikkert")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('sikkert.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="sikkert2")
+async def play_ugøy(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('sikkert2.mp3'), after=lambda e: print('done', e))
 
     await ctx.message.delete()
 
@@ -156,6 +292,140 @@ async def play_ape(ctx):
 
     await ctx.message.delete()
 
+
+@bot.command(name="gjesp")
+async def play_gjesp(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('gjesp.m4a'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="ape2")
+async def play_ape2(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ape2.m4a'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="stivi")
+async def play_stivi(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('stivi.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="marengs")
+async def play_marengs(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('marengs.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="kjeften")
+async def play_hold_kjeft(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('holdkjeft.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
 @bot.command(name="sur")
 async def play_ape(ctx):
     # Gets voice channel of message author
@@ -179,6 +449,388 @@ async def play_ape(ctx):
     sleep(0.2)
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
     vc.play(discord.FFmpegPCMAudio('sur.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="grim")
+async def play_grim(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('grim.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+
+
+@bot.command(name="åå")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ååå.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+
+@bot.command(name="mhm")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('mhm.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="sikkje")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('sikkje.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+
+@bot.command(name="nice")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('nice.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="degseie")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('degseie.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="gidde")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('gidde.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="ragev")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ragev.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="ins")
+async def play_ååå(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ins.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="stikke")
+async def play_stikke(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('stikkeeg.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="samev")
+async def play_samev(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('samev.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="sisisi")
+async def play_samev(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('sisisi.m4a'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="gjespj")
+async def play_gjespj(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('gjespj.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="stikkej")
+async def play_stikkej(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('stikkejl.mp3'), after=lambda e: print('done', e))
 
     await ctx.message.delete()
 
@@ -209,6 +861,32 @@ async def play_ape(ctx):
 
     await ctx.message.delete()
 
+@bot.command(name="brann")
+async def play_brann(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('brann.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
 @bot.command(name="dildo")
 async def play_dildo(ctx):
     # Gets voice channel of message author
@@ -234,6 +912,165 @@ async def play_dildo(ctx):
     vc.play(discord.FFmpegPCMAudio('dildo.mp3'), after=lambda e: print('done', e))
 
     await ctx.message.delete()
+
+@bot.command(name="dildo2")
+async def play_dildo(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('dildo2.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="ser")
+async def play_dildo(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('ser.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="rc")
+async def play_dildo(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('rc.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="hallo")
+async def play_dildo(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('hallo.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+@bot.command(name="tfm")
+async def play_tfm(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('tfm.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
+
+@bot.command(name="vann")
+async def play_vann(ctx):
+    # Gets voice channel of message author
+    # vc = await ctx.message.author.voice.channel.connect()
+
+    if ctx.author.voice is None or ctx.author.voice.channel is None:
+        return
+
+    voice_channel = ctx.author.voice.channel
+    if ctx.voice_client is None:
+        vc = await voice_channel.connect()
+    else:
+        await ctx.voice_client.move_to(voice_channel)
+        vc = ctx.voice_client
+
+    print(is_connected(ctx))
+
+    if not is_connected(ctx):
+        vc = await ctx.message.author.voice.channel.connect()
+
+    sleep(0.2)
+    # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
+    vc.play(discord.FFmpegPCMAudio('vann.mp3'), after=lambda e: print('done', e))
+
+    await ctx.message.delete()
+
 
 
 @bot.command(name="same")
