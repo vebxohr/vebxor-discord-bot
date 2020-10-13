@@ -66,13 +66,34 @@ async def search_movie(ctx, *movie):
     movies = ia.search_movie(movie)
     top_result = ia.get_movie(movies[0].getID())
 
+    print(top_result.items())
+    print(top_result.keys())
+
     title, genres, rating = get_title_rating_genre(top_result)
 
-    await ctx.send(f"Title: {title}\n"
-                   f"Rating: {rating}\n"
-                   f"Genre: {genres}\n"
-                   f"{ia.get_imdbURL(top_result)}"
-                   )
+    cover_url = str(top_result.get('cover url'))
+    top_250_rank = top_result.get('top 250 rank')
+    print(top_250_rank)
+
+
+    embed = discord.Embed(
+        title=title,
+        description=f"**Rating:** {rating} :star:               \n"
+                    f"**Genre:** {genres}\n",
+        color=discord.Color.blue(),
+        url=str(ia.get_imdbURL(top_result))
+    )
+    if top_250_rank:
+        embed.description += f"**Top 250 rank:** {top_250_rank}"
+    embed.set_image(url=cover_url)
+
+
+    # await ctx.send(f"Title: {title}\n"
+    #                f"Rating: {rating}\n"
+    #                f"Genre: {genres}\n"
+    #                f"{ia.get_imdbURL(top_result)}"
+    #                )
+    await ctx.send(embed=embed)
 
 
 @bot.command(name="disconnectvc")
@@ -116,7 +137,6 @@ async def play_sound(ctx):
     vc.play(discord.FFmpegPCMAudio(sounds[ctx.message.content[1:]]), after=lambda e: print('done', e))
 
     await ctx.message.delete()
-
 
 
 @bot.command(name="yomama")
