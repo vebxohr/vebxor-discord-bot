@@ -8,15 +8,17 @@ import urllib.request
 import discord.file
 from time import sleep
 from pathlib import Path
+import json
+from youtubesearchpython import SearchVideos
+from music_player import YTDLSource
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
 bot = commands.Bot(command_prefix='.')
-ia = IMDb()
 
-sounds = {"ape": "../resources/ape.mp3"}
+ia = IMDb()
 
 
 @bot.event
@@ -32,22 +34,40 @@ async def on_member_join(member):
     )
 
 
-@bot.command(name='99')
-async def nine_nine(ctx):
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
-
-    response = random.choice(brooklyn_99_quotes)
-    await ctx.send(response)
+@bot.command(name="play", help="Play a clip from YouTube: .play [URL]")
+async def play(ctx, *url):
+    if ".com" not in url and "youtube" not in url:
+        search = SearchVideos(url, offset=1, mode="json", max_results=1)
+        url = json.loads(search.result()).get("search_result")[0].get('link')
+        print(url)
+    async with ctx.typing():
+        player = await YTDLSource.from_url(url, loop=bot.loop, stream=True)
+        ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+    await ctx.send('Now playing: {}'.format(player.title))
 
 
-@bot.command(name='roll', help='Simulates rolling dice.')
+@bot.command(name="pause", help="Pause the bot voice.")
+async def pause(ctx):
+    vc = get_voice_channel_bot(ctx)
+    if vc:
+        vc.pause()
+
+
+@bot.command(name="resume", help="Resume the bot voice.")
+async def resume(ctx):
+    vc = get_voice_channel_bot(ctx)
+    if vc:
+        vc.resume()
+
+
+@bot.command(name="stop", help="Stop the bot voice.")
+async def stop_sound(ctx):
+    voice_channel = get_voice_channel_bot(ctx)
+    if voice_channel:
+        voice_channel.stop()
+
+
+@bot.command(name='roll', help='Simulates rolling dice: .roll [n sides] [n dice]')
 async def roll(ctx, number_of_sides: int = 6, number_of_dice: int = 1):
     if number_of_sides > 100 or number_of_sides < 1 or number_of_dice > 10 or number_of_dice < 0:
         message = "Invalid number"
@@ -60,14 +80,11 @@ async def roll(ctx, number_of_sides: int = 6, number_of_dice: int = 1):
     await ctx.send(message)
 
 
-@bot.command(name="imdbs")
+@bot.command(name="imdbs", help="Search for a movie on IMDB: .imdbs [movie title]")
 async def search_movie(ctx, *movie):
     movie = " ".join(movie)
     movies = ia.search_movie(movie)
     top_result = ia.get_movie(movies[0].getID())
-
-    print(top_result.items())
-    print(top_result.keys())
 
     title, genres, rating = get_title_rating_genre(top_result)
 
@@ -96,7 +113,7 @@ async def search_movie(ctx, *movie):
     await ctx.send(embed=embed)
 
 
-@bot.command(name="disconnectvc")
+@bot.command(name="disconnectvc", help="Disconnect the bot from the current voice channel")
 async def leave_vc(ctx):
     vc = get_voice_channel_bot(ctx)
     if vc:
@@ -108,10 +125,10 @@ def get_aliases():
     dirs = Path("../resources/")
     for file in dirs.iterdir():
         f.append(file.name.split(".")[0])
-        return f
+    return f
 
 
-@bot.command(aliases=get_aliases())
+@bot.command(aliases=get_aliases(), help='Type .hsounds for commands')
 async def play_sound(ctx):
     # Gets voice channel of message author
     # vc = await ctx.message.author.voice.channel.connect()
@@ -126,23 +143,30 @@ async def play_sound(ctx):
         await ctx.voice_client.move_to(voice_channel)
         vc = ctx.voice_client
 
-    print(is_connected(ctx))
-
     if not is_connected(ctx):
         vc = await ctx.message.author.voice.channel.connect()
 
     sleep(0.2)
     print("message " + ctx.message.content)
+    file_name = ctx.message.content[1:] + ".mp3"
+    sound_file_path = Path("../resources/") / file_name
     # Requires that FFmpeg (and frei0r-plugins (?)) is installed on host machine
-    vc.play(discord.FFmpegPCMAudio(sounds[ctx.message.content[1:]]), after=lambda e: print('done', e))
+    vc.play(discord.FFmpegPCMAudio(sound_file_path), after=lambda e: print('done', e))
 
     await ctx.message.delete()
 
 
-@bot.command(name="yomama")
+@bot.command(name="hsounds", help="Lists available sound commands.")
+async def help_sounds(ctx):
+    message = str("\n".join(get_aliases()))
+    message = "``` " + message + " ```"
+    await ctx.send(message)
+
+
+@bot.command(name="yomama", help="Get a random yo mama joke.")
 async def search_movie(ctx):
     jokes = {}
-    with open('yomamajokes.txt') as f:
+    with open('../resources/yomamajokes.txt') as f:
         count = 0
         for l in f:
             jokes[count] = l
